@@ -67,7 +67,14 @@
 
 ;; Customize TODO states in org-mode
 (after! org
-  (setq! org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "WAIT(w)"))))
+  (setq! org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "WAIT(w)")))
+
+  (setq! org-capture-templates
+      '(("w" "Work task" entry (file+headline "work.org" "Inbox")
+         "* TODO %?\n  %i\n")
+        ("p" "Private entry" entry (file "private")
+         "* %?\n  %i\n")))
+)
 
 ;; Hide pyenv's default modeline string
 (after! pyenv-mode
