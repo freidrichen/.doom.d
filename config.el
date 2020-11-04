@@ -67,13 +67,46 @@
 
 ;; Customize TODO states in org-mode
 (after! org
-  (setq! org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "WAIT(w)")))
+  (setq! org-todo-keywords
+         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "WAIT(w)")))
 
   (setq! org-capture-templates
       '(("w" "Work task" entry (file+headline "work.org" "Inbox")
          "* TODO %?\n  %i\n")
         ("p" "Private entry" entry (file "private")
          "* %?\n  %i\n")))
+
+  ;; Exclude archive files
+  ;; (setq! org-agenda-files
+  ;;     (f-files org-directory
+  ;;              (lambda (file) (not (s-matches? "-archive" file)))))
+
+  ;; Show the daily agenda by default.
+  (setq! org-agenda-span 'day)
+
+  ;; Hide tasks that are scheduled in the future.
+  (setq! org-agenda-todo-ignore-scheduled 'future)
+
+  ;; Hide the deadline prewarning prior to scheduled date.
+  (setq! org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
+
+  ;; Customized view for the daily workflow.
+  (setq! org-agenda-custom-commands
+      '(("w" "Work agenda / TODOs"
+         ((agenda "" nil)
+          (todo "INTR" nil)
+          (todo "PROG" nil)
+          (todo "NEXT" nil))
+         ((org-agenda-files
+           '("~/Documents/org/work.org"))))
+        ("p" "Private agenda / TODOs"
+         ((agenda "" nil)
+          (todo "INTR" nil)
+          (todo "PROG" nil)
+          (todo "NEXT" nil))
+         ((org-agenda-files
+           '("~/Documents/org/private.org"))))
+        ))
 )
 
 ;; Hide pyenv's default modeline string
