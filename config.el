@@ -68,7 +68,7 @@
 ;; Customize TODO states in org-mode
 (after! org
   (setq! org-todo-keywords
-         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "WAIT(w)")))
+         '((sequence "TODO(t)" "NEXT(n)" "PROG(p)" "INTR(i)" "|" "DONE(d)" "WAIT(w)")))
 
   (setq! org-capture-templates
       '(("w" "Work task" entry (file+headline "work.org" "Inbox")
