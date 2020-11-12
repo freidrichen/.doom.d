@@ -58,7 +58,9 @@
 
 (map! :n "Q" 'evil-fill-and-move
       :leader
-      :desc "Which function mode" "t W" 'which-function-mode)
+      :desc "Which function mode" "t W" 'which-function-mode
+      :desc "Search current project" "/" '+default/search-project
+      )
 
 ;; Movements in evil-mode should be by symbol, not by word
 ;; TODO: Doesn't work so well in xml
