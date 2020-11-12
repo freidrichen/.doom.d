@@ -73,7 +73,7 @@
   (setq! org-capture-templates
       '(("w" "Work task" entry (file+headline "work.org" "Inbox")
          "* TODO %?\n  %i\n")
-        ("p" "Private entry" entry (file "private")
+        ("p" "Private entry" entry (file+headline "private.org" "Inbox")
          "* %?\n  %i\n")))
 
   ;; Exclude archive files
