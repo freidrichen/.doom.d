@@ -57,9 +57,19 @@
 ;;; -- My own stuff --
 
 (map! :n "Q" 'evil-fill-and-move
+
       :leader
       :desc "Which function mode" "t W" 'which-function-mode
       :desc "Search current project" "/" '+default/search-project
+
+      ;;; Git-related stuff
+      :desc "File history" "g h" 'magit-log-buffer-file
+      (:prefix-map ("g m" . "Merge conflict resolution")
+       :desc "Keep current" "." 'smerge-keep-current
+       :desc "Keep mine" "m" 'smerge-keep-mine
+       :desc "Keep other" "o" 'smerge-keep-other
+       :desc "Keep all" "a" 'smerge-keep-all
+       )
       )
 
 ;; Movements in evil-mode should be by symbol, not by word
