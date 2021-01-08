@@ -69,6 +69,8 @@
        :desc "Keep mine" "m" 'smerge-keep-mine
        :desc "Keep other" "o" 'smerge-keep-other
        :desc "Keep all" "a" 'smerge-keep-all
+       :desc "Next conflict" "n" 'smerge-next
+       :desc "Previous conflict" "p" 'smerge-prev
        )
       )
 
