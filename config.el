@@ -74,6 +74,9 @@
        )
       )
 
+(after! (flycheck python)
+  (setq-default flycheck-disabled-checkers '(python-pylint python-mypy)))
+
 ;; Movements in evil-mode should be by symbol, not by word
 ;; TODO: Doesn't work so well in xml
 (after! evil
