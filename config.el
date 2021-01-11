@@ -56,30 +56,34 @@
 
 ;;; -- My own stuff --
 
-(map! :n "Q" 'evil-fill-and-move
-
-      :leader
+(map! :leader
       :desc "Which function mode" "t W" 'which-function-mode
-      :desc "Search current project" "/" '+default/search-project
+      :desc "Search current project" "/" '+default/search-project)
 
-      ;;; Git-related stuff
-      :desc "File history" "g h" 'magit-log-buffer-file
-      (:prefix-map ("g m" . "Merge conflict resolution")
-       :desc "Keep current" "." 'smerge-keep-current
-       :desc "Keep mine" "m" 'smerge-keep-mine
-       :desc "Keep other" "o" 'smerge-keep-other
-       :desc "Keep all" "a" 'smerge-keep-all
-       :desc "Next conflict" "n" 'smerge-next
-       :desc "Previous conflict" "p" 'smerge-prev
-       )
-      )
+(after! magit
+  (map! :leader
+        :desc "File history" "g h" 'magit-log-buffer-file
+        (:prefix-map ("g m" . "Merge conflict resolution")
+         :desc "Keep current" "." 'smerge-keep-current
+         :desc "Keep mine" "m" 'smerge-keep-mine
+         :desc "Keep other" "o" 'smerge-keep-other
+         :desc "Keep all" "a" 'smerge-keep-all
+         :desc "Next conflict" "n" 'smerge-next
+         :desc "Previous conflict" "p" 'smerge-prev)))
+
+(after! flycheck
+  (map! :leader
+        :desc "Previous error" "c p" 'flycheck-previous-error
+        :desc "Next error" "c n" 'flycheck-next-error))
 
 (after! (flycheck python)
   (setq-default flycheck-disabled-checkers '(python-pylint python-mypy)))
 
-;; Movements in evil-mode should be by symbol, not by word
-;; TODO: Doesn't work so well in xml
 (after! evil
+  (map! :n "Q" 'evil-fill-and-move)
+
+  ;; Movements in evil-mode should be by symbol, not by word
+  ;; TODO: Doesn't work so well in xml
   (defalias 'forward-evil-word 'forward-evil-symbol))
 
 ;; Customize TODO states in org-mode
